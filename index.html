@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de control de molino</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="Chart.min.js"></script>
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <div class="flex-container">
+        <div class="column-container column1">
+            <div class="titles">
+                <h1>Configuracion</h1>
+                <h1>Comunicacion serial</h1>
+            </div>
+            <div class="form-communication-container">
+                <form id="serialForm" onsubmit="handleFormSubmit(event)">
+                    <label for="port">Puerto serial</label>
+                    <select id="port" name="Puerto">
+                        <!-- Las opciones se llenarán dinámicamente -->
+                    </select>
+                    <label for="baud">Baudios</label>
+                    <select id="baud" name="Baudios">
+                        <option value="9600">9600</option>
+                        <option value="115200">115200</option>
+                    </select>
+                    <input type="submit" id="submitButton" value="Conectar">
+                </form>
+            </div>
+        </div>
+
+        <div class="column-container column2">
+            <div class="titles">
+                <h1>Grafica</h1>
+                <h1>RPM vs Tiempo</h1>
+            </div>
+            <div class="graph-container">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="titles">
+                <h1>Setpoint</h1>
+            </div>
+            <div class="grid-setpoint-container">
+                <div class="cuadro label-container">
+                    <label id="porcentLabel">0%</label>
+                    <label id="RPMLabel">0 RPM</label>
+                </div>
+                <div class="cuadro"><button class="button-control-setpoint" onclick="incrementNumber()">Incrementar</button></div>
+                <div class="cuadro"><button class="button-control-setpoint" onclick="decrementNumber()">Decrementar</button></div>
+                <div class="cuadro"><button class="button-setpoint" onclick="handleSetpointSubmit()">Enviar</button></div>
+                <div class="cuadro"><button class="button-setpoint" id="startButton" onclick="handleStart()">Iniciar</button></div>
+            </div>
+        </div>
+
+        <div class="column-container column3">
+            <div class="titles">
+                <h1>Monitoreo</h1>
+            </div>
+            <div class="monitoring-container">
+                <p id="speedMotor">RPM: 0</p>
+                <p id="time">Tiempo: 0</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
